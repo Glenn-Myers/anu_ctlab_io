@@ -6,7 +6,7 @@ from datetime import datetime
 from enum import Enum
 from math import prod
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any, Literal, TypeAlias
 
 import dask.array as da
 import zarr
@@ -27,8 +27,8 @@ logger = logging.getLogger(__name__)
 _DEFAULT_CHUNK_ELEMENTS = max(8192**2, 512**3)
 _DEFAULT_SUBCHUNK_ELEMENTS = max(256**2, 32**3)
 
-type ChunkShape = tuple[int, ...]
-type ChunkSpec = ChunkShape | int | Literal["auto"]
+ChunkShape: TypeAlias = tuple[int, ...]
+ChunkSpec: TypeAlias = ChunkShape | int | Literal["auto"]
 
 
 class OMEZarrVersion(Enum):

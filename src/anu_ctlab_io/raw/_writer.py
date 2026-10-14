@@ -19,12 +19,16 @@ class _RawFileStore:
     object can be serialised and used by distributed workers in separate processes.
     """
 
-    def __init__(self, path: Path, shape: tuple[int, ...], le_dtype: np.dtype) -> None:
+    def __init__(
+        self, path: Path, shape: tuple[int, ...], le_dtype: np.dtype[Any]
+    ) -> None:
         self._path = path
         self._shape = shape
         self._le_dtype = le_dtype
 
-    def __setitem__(self, region: tuple[slice, ...], chunk: np.ndarray) -> None:
+    def __setitem__(
+        self, region: tuple[slice, ...], chunk: np.ndarray[Any, np.dtype[Any]]
+    ) -> None:
         chunk = chunk.astype(self._le_dtype, copy=False)
         mm = np.memmap(self._path, dtype=self._le_dtype, mode="r+", shape=self._shape)
         try:

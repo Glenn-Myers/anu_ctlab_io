@@ -255,7 +255,7 @@ def _write_single_netcdf(
 
 
 def _write_block(
-    block_data: np.ndarray,
+    block_data: np.ndarray[Any, np.dtype[Any]],
     block_path: Path,
     datatype: DataType,
     zdim_total: int,
@@ -353,7 +353,7 @@ _NUMPY_TO_NETCDF_DTYPE_MAP = {
 }
 
 
-def _numpy_to_netcdf_dtype(dtype: np.dtype) -> str:
+def _numpy_to_netcdf_dtype(dtype: np.dtype[Any]) -> str:
     """Convert numpy dtype to netCDF4 dtype string."""
     dtype = np.dtype(dtype)
     try:

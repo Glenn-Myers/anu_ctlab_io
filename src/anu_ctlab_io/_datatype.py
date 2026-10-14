@@ -2,7 +2,7 @@ import os
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
-from typing import Self
+from typing import Self, TypeAlias
 
 import numpy as np
 from numpy.typing import DTypeLike
@@ -10,7 +10,7 @@ from numpy.typing import DTypeLike
 __all__ = ["StorageDType", "DataType"]
 
 
-type StorageDType = (
+StorageDType: TypeAlias = (
     np.uint8 | np.uint16 | np.uint32 | np.uint64 | np.float16 | np.float32 | np.float64
 )
 

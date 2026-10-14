@@ -1,5 +1,5 @@
 import re
-from typing import Any
+from typing import Any, TypeAlias
 
 from lark import Lark, Token, Transformer
 from lark.tree import Branch
@@ -26,10 +26,10 @@ _structured_parser = Lark(
 )
 
 
-type KVPairs = dict[Token, Token | None]
-type Section = dict[Token, SectionContents]
-type SectionContents = dict[Token, Token | SectionContents | None]
-type HistoryValue = (
+KVPairs: TypeAlias = dict[Token, Token | None]
+SectionContents: TypeAlias = dict[Token, "Token | SectionContents | None"]
+Section: TypeAlias = dict[Token, SectionContents]
+HistoryValue: TypeAlias = (
     str
     | bool
     | int
@@ -37,7 +37,7 @@ type HistoryValue = (
     | list[str | bool | int | float | dict[str, Any]]
     | dict[str, "HistoryValue"]
 )
-type History = dict[str, HistoryValue]
+History: TypeAlias = dict[str, HistoryValue]
 
 
 class _StructuredTransformer(Transformer[Token, History]):
